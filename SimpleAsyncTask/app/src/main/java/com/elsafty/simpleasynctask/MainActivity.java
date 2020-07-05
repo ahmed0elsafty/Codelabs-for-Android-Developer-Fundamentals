@@ -9,10 +9,11 @@ import android.widget.TextView;
 import java.lang.ref.WeakReference;
 import java.util.Random;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final String  TEXT_STATE = "currentText";
     private TextView mTextView;
     private Button mButton;
 
@@ -22,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mTextView = findViewById(R.id.textView);
         mButton = findViewById(R.id.button);
+
+        if (savedInstanceState !=null){
+            mTextView.setText(savedInstanceState.getString(TEXT_STATE));
+        }
     }
 
     public void startTask(View view) {
@@ -29,8 +34,14 @@ public class MainActivity extends AppCompatActivity {
         new SimpleAsyncTask(mTextView).execute();
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
-    class SimpleAsyncTask extends AsyncTask<Void, Void, String> {
+        outState.putString(TEXT_STATE,mTextView.getText().toString().trim());
+    }
+
+    class SimpleAsyncTask extends AsyncTask<Void, Integer, String> {
         WeakReference<TextView> mTextView;
 
         public SimpleAsyncTask(TextView textView) {
@@ -42,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             Random random = new Random();
             int n = random.nextInt(11);
             int s = n * 200;
+            publishProgress(s);
             try {
                 Thread.sleep(s);
             } catch (InterruptedException e) {
@@ -53,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             mTextView.get().setText(s);
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            mTextView.get().setText("Waiting Me "+ values[0]+" ms");
         }
     }
 }
