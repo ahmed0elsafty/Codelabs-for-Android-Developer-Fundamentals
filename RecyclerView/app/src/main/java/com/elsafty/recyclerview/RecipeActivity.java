@@ -3,15 +3,12 @@ package com.elsafty.recyclerview;
 
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.elsafty.recyclerview.Utilities.NetworkUtils;
 
 
 public class RecipeActivity extends AppCompatActivity {
@@ -41,21 +38,8 @@ public class RecipeActivity extends AppCompatActivity {
             count++;
         }
         actionBar.setTitle(mRecipe.getName());
-        new loadBitMap().execute(url);
+        new loadBitmapAsynTask(ivRecipe).execute(url);
 
     }
-    public class loadBitMap extends AsyncTask<String,Void,Bitmap>{
 
-        @Override
-        protected Bitmap doInBackground(String... strings) {
-            String imageURL = strings[0];
-            return NetworkUtils.laodImage(imageURL);
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            ivRecipe.setImageBitmap(bitmap);
-            cancel(true);
-        }
-    }
 }
