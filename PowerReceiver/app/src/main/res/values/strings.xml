@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PowerReceiver</string>
+    <string name="send_custom_broadcast">SEND CUSTOM BROADCAST</string>
+    <string name="unknown_action">Unknown Intent Action</string>
+</resources>
