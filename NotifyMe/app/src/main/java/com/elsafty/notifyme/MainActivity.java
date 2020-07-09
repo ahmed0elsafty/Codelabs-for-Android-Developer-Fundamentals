@@ -1,8 +1,9 @@
 package com.elsafty.notifyme;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
     private static final int NOTIFICATION_ID = 845;
-    private Button btnNotifiMe;
+    private static final int REQUEST_CODE_FOR_PENDING_INTENT = 276;
+    private Button btnNotifyMe;
     private NotificationManager mNotificationManager;
 
     @Override
@@ -23,29 +25,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnNotifiMe = findViewById(R.id.notifi_me);
-        btnNotifiMe.setOnClickListener(new View.OnClickListener() {
+        btnNotifyMe = findViewById(R.id.notify_me);
+        btnNotifyMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sendNotification();
             }
         });
 
-
-
-
         createNotificationChannel();
 
     }
+
+
 
     public void sendNotification() {
         NotificationCompat.Builder builder = getNotificationBuilder();
         mNotificationManager.notify(NOTIFICATION_ID,
                 builder.build());
+
     }
-    public void createNotificationChannel(){
+
+    public void createNotificationChannel() {
         mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(PRIMARY_CHANNEL_ID,
                     "Mascot Notification",
                     NotificationManager.IMPORTANCE_HIGH);
@@ -53,17 +56,27 @@ public class MainActivity extends AppCompatActivity {
             channel.setLightColor(Color.RED);
             channel.setDescription("Notification from Mascot");
             channel.enableVibration(true);
-            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
             mNotificationManager.createNotificationChannel(channel);
         }
     }
 
-    public NotificationCompat.Builder getNotificationBuilder(){
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,PRIMARY_CHANNEL_ID)
+    public NotificationCompat.Builder getNotificationBuilder() {
+
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                REQUEST_CODE_FOR_PENDING_INTENT,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, PRIMARY_CHANNEL_ID)
                 .setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_android)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setContentTitle("You've been notified!")
-                .setContentText("This is your notification text.");
+                .setContentText("This is your notification text.")
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setContentIntent(pendingIntent);
         return builder;
     }
 }
