@@ -10,11 +10,34 @@
         android:id="@+id/notify_me"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:text="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/update_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:text="UPDATE ME!"
+        app:layout_constraintEnd_toStartOf="@+id/notify_me"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toEndOf="@+id/notify_me"
+        app:layout_constraintTop_toBottomOf="@+id/notify_me" />
+
+    <Button
+        android:id="@+id/cancel_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="172dp"
+        android:text="CANCEL ME!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/update_me"
+        app:layout_constraintStart_toEndOf="@+id/update_me"
+        app:layout_constraintTop_toBottomOf="@+id/update_me"
+        app:layout_constraintVertical_bias="0.272" />
 
 
 </android.support.constraint.ConstraintLayout>

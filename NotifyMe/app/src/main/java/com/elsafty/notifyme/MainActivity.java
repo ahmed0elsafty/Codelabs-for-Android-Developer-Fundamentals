@@ -4,6 +4,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
     private static final int NOTIFICATION_ID = 845;
     private static final int REQUEST_CODE_FOR_PENDING_INTENT = 276;
-    private Button btnNotifyMe;
+    private Button btnNotifyMe, btnUpdateME , btnCancelMe;
+
     private NotificationManager mNotificationManager;
 
     @Override
@@ -32,9 +35,48 @@ public class MainActivity extends AppCompatActivity {
                 sendNotification();
             }
         });
+        btnUpdateME = findViewById(R.id.update_me);
+        btnUpdateME.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateNotification();
+            }
+        });
+        btnCancelMe  = findViewById(R.id.cancel_me);
+        btnCancelMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancelNotification();
+            }
+        });
+        toggle(true,false,false);
+
 
         createNotificationChannel();
 
+    }
+
+    private void updateNotification() {
+        NotificationCompat.Builder builder = getNotificationBuilder();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.mascot_1);
+        builder.setStyle(new NotificationCompat.
+                BigPictureStyle().
+                bigPicture(bitmap).
+                setBigContentTitle("Notification Updated!"));
+
+        mNotificationManager.notify(NOTIFICATION_ID, builder.build());
+        toggle(false,false,true);
+    }
+
+    private void cancelNotification() {
+        mNotificationManager.cancel(NOTIFICATION_ID);
+        toggle(true,false,false);
+    }
+
+    public void toggle(boolean notify_me,boolean update_me,boolean cancel_me){
+        btnNotifyMe.setEnabled(notify_me);
+        btnUpdateME.setEnabled(update_me);
+        btnCancelMe.setEnabled(cancel_me);
     }
 
 
@@ -43,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         NotificationCompat.Builder builder = getNotificationBuilder();
         mNotificationManager.notify(NOTIFICATION_ID,
                 builder.build());
-
+        toggle(false,true,true);
     }
 
     public void createNotificationChannel() {
