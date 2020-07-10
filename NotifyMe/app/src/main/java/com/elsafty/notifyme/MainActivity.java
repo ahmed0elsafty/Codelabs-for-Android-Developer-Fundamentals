@@ -7,8 +7,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -63,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         toggle(true, false, false);
 
         mNotificationReceiver = new NotificationReceiver();
-        mFilter= new IntentFilter();
+        mFilter = new IntentFilter();
         mFilter.addAction(UPDATE_NOTIFICATION_ACTION);
         mFilter.addAction(DISMISS_NOTIFICATION_ACTION);
         createNotificationChannel();
@@ -72,11 +70,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateNotification() {
         NotificationCompat.Builder builder = getNotificationBuilder();
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mascot_1);
+        /*Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mascot_1);
         builder.setStyle(new NotificationCompat.
                 BigPictureStyle().
                 bigPicture(bitmap).
-                setBigContentTitle("Notification Updated!"));
+                setBigContentTitle("Notification Updated!"));*/
+        builder.setStyle(new NotificationCompat
+                .InboxStyle()
+                .setBigContentTitle("Notification Updated!")
+                .addLine("The Line 1")
+                .addLine("The Line 2")
+                .addLine("The Line 3")
+                .addLine("The Line 4")
+                .setSummaryText("Yes this Beautiful Notification"));
 
         mNotificationManager.notify(NOTIFICATION_ID, builder.build());
         toggle(false, false, true);
