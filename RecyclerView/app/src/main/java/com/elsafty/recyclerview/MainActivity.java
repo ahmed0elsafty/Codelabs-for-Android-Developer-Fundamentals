@@ -3,6 +3,7 @@ package com.elsafty.recyclerview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
         mRecyclerView = findViewById(R.id.recyclerview);
         mAdapter = new RecipeListAdapter(this, mRecipes, this);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
 
        /* FloatingActionButton fab = findViewById(R.id.fab);
