@@ -10,11 +10,14 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class OrderActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String TAG = "OrderActivity";
@@ -23,6 +26,7 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
     private Spinner mSpinner;
     private String mSpinnerLabel;
     private EditText mPhone;
+    private ArrayList<String> mSelectedBoxes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,5 +109,56 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+    }
+
+    public void showToast(View view) {
+        String allSelected = "";
+        if (mSelectedBoxes.size() == 0) return;
+        for (String s : mSelectedBoxes) {
+            allSelected += " " + s;
+        }
+        displayMessage(allSelected);
+    }
+
+    public void onCheckboxClicked(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+        switch (view.getId()) {
+            case R.id.chocolate_syrup:
+                if (checked) {
+                    mSelectedBoxes.add(getString(R.string.chocolate_syrup));
+                } else {
+                    mSelectedBoxes.remove(getString(R.string.chocolate_syrup));
+                }
+                break;
+            case R.id.sprinkles:
+                if (checked) {
+                    mSelectedBoxes.add(getString(R.string.sprinkles));
+                } else {
+                    mSelectedBoxes.remove(getString(R.string.sprinkles));
+                }
+                break;
+            case R.id.crushed_nuts:
+                if (checked) {
+                    mSelectedBoxes.add(getString(R.string.crushed_nuts));
+                } else {
+                    mSelectedBoxes.remove(getString(R.string.crushed_nuts));
+                }
+                break;
+            case R.id.cherries:
+                if (checked) {
+                    mSelectedBoxes.add(getString(R.string.cherries));
+                } else {
+                    mSelectedBoxes.remove(getString(R.string.cherries));
+                }
+                break;
+            case R.id.orio:
+                if (checked) {
+                    mSelectedBoxes.add(getString(R.string.orio_cookie_crumbles));
+                } else {
+                    mSelectedBoxes.remove(getString(R.string.orio_cookie_crumbles));
+                }
+                break;
+
+        }
     }
 }

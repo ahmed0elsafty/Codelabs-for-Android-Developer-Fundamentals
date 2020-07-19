@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".OrderActivity">
 
+    <Button
+        android:id="@+id/show_toast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_wide"
+        android:layout_marginTop="@dimen/margin_wide"
+        android:onClick="showToast"
+        android:text="@string/show_toast"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toppings" />
+
     <EditText
         android:id="@+id/name_text"
         android:layout_width="wrap_content"
@@ -52,6 +63,53 @@
         android:inputType="textMultiLine|textCapSentences"
         app:layout_constraintBaseline_toBaselineOf="@+id/note_label"
         app:layout_constraintStart_toEndOf="@+id/note_label" />
+
+    <LinearLayout
+        android:id="@+id/toppings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_wide"
+        android:layout_marginLeft="@dimen/margin_wide"
+        android:layout_marginTop="@dimen/margin_wide"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toppings_label">
+
+        <CheckBox
+            android:id="@+id/chocolate_syrup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="@string/chocolate_syrup" />
+
+        <CheckBox
+            android:id="@+id/sprinkles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="@string/sprinkles" />
+
+        <CheckBox
+            android:id="@+id/crushed_nuts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="@string/crushed_nuts" />
+
+        <CheckBox
+            android:id="@+id/cherries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="@string/cherries" />
+
+        <CheckBox
+            android:id="@+id/orio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="@string/orio_cookie_crumbles" />
+    </LinearLayout>
 
     <RadioGroup
         android:id="@+id/deliveru_methods"
@@ -164,4 +222,14 @@
         android:text="@string/choose_a_delivery_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/note_text" />
+
+    <TextView
+        android:id="@+id/toppings_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_wide"
+        android:layout_marginTop="@dimen/margin_wide"
+        android:text="@string/toppings_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deliveru_methods" />
 </android.support.constraint.ConstraintLayout>
