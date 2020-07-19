@@ -3,6 +3,7 @@ package com.elsafty.droidcafe;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -170,5 +171,17 @@ public class OrderActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putStringArrayList(BUNDLE_KEY, mSelectedBoxes);
+    }
+    public void OnprocessDate(int year,int month,int day){
+        String yearString = Integer.toString(year);
+        String monthString =Integer.toString(month);
+        String dayString = Integer.toString(day);
+        String message = dayString + "/" + monthString + "/" + yearString;
+        displayMessage(message);
+    }
+
+    public void showDate(View view) {
+        DialogFragment dialogFragment = new DateFragment();
+        dialogFragment.show(getSupportFragmentManager(),"date");
     }
 }

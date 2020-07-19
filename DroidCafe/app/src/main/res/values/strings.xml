@@ -37,6 +37,9 @@
     <string name="action_share">Share</string>
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pick_date">PICK DATE</string>
+
     <string-array name="labels_array">
         <item>Home</item>
         <item>Work</item>
