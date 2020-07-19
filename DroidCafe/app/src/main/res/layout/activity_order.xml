@@ -6,14 +6,148 @@
     android:layout_height="match_parent"
     tools:context=".OrderActivity">
 
+    <EditText
+        android:id="@+id/name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:hint="@string/enter_name_hint"
+        android:inputType="textPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/name_label"
+        app:layout_constraintStart_toEndOf="@+id/name_label" />
+
+    <EditText
+        android:id="@+id/addess_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:hint="@string/enter_address_hint"
+        android:inputType="textMultiLine"
+        app:layout_constraintBaseline_toBaselineOf="@+id/address_label"
+        app:layout_constraintStart_toEndOf="@+id/address_label" />
+
+    <EditText
+        android:id="@+id/phone_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:hint="@string/enter_phone_hint"
+        android:inputType="phone"
+        app:layout_constraintBaseline_toBaselineOf="@+id/phone_label"
+        app:layout_constraintStart_toEndOf="@+id/phone_label" />
+
+    <EditText
+        android:id="@+id/note_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:hint="@string/enter_note_hint"
+        android:inputType="textMultiLine|textCapSentences"
+        app:layout_constraintBaseline_toBaselineOf="@+id/note_label"
+        app:layout_constraintStart_toEndOf="@+id/note_label" />
+
+    <RadioGroup
+        android:id="@+id/deliveru_methods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_wide"
+        android:layout_marginTop="@dimen/margin_wide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delivery_label">
+
+        <RadioButton
+            android:id="@+id/same_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/same_day_messenger_service" />
+
+        <RadioButton
+            android:id="@+id/next_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/next_day_ground_delivery" />
+
+        <RadioButton
+            android:id="@+id/pick_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/pick_up" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_wide"
+        android:layout_marginLeft="@dimen/margin_wide"
+        android:layout_marginTop="32dp"
+        android:text="@string/name_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recieve_message" />
+
+    <TextView
+        android:id="@+id/phone_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_wide"
+        android:layout_marginLeft="@dimen/margin_wide"
+        android:layout_marginTop="@dimen/margin_wide"
+        android:text="@string/phone_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address_label" />
+
     <TextView
         android:id="@+id/recieve_message"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/margin_wide"
+        android:layout_marginLeft="@dimen/margin_wide"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/donut_order_message" />
+
+    <TextView
+        android:id="@+id/note_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_wide"
+        android:layout_marginLeft="@dimen/margin_wide"
+        android:layout_marginTop="@dimen/margin_wide"
+        android:text="@string/note_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_label" />
+
+    <TextView
+        android:id="@+id/address_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_wide"
+        android:layout_marginLeft="@dimen/margin_wide"
+        android:layout_marginTop="@dimen/margin_wide"
+        android:text="@string/address_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_label" />
+
+    <TextView
+        android:id="@+id/delivery_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_wide"
+        android:layout_marginTop="@dimen/margin_wide"
+        android:text="@string/choose_a_delivery_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/note_text" />
 </android.support.constraint.ConstraintLayout>
