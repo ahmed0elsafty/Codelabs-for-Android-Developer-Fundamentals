@@ -1,30 +1,38 @@
 package com.elsafty.droidcafe;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class OrderActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class OrderActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private static final String TAG = "OrderActivity";
     private TextView mRecieveMessage;
     private RadioButton mSameDay;
     private Spinner mSpinner;
     private String mSpinnerLabel;
+    private EditText mPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+        mPhone = findViewById(R.id.phone_text);
         mSpinner = findViewById(R.id.spinner_label);
         mSameDay = findViewById(R.id.same_day);
         mRecieveMessage = findViewById(R.id.recieve_message);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.MESSAGE);
         mRecieveMessage.setText(message);
         mSameDay.setChecked(true);
@@ -33,10 +41,33 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
             mSpinner.setOnItemSelectedListener(this);
         }
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.labels_array,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.labels_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(adapter);
 
+        mPhone.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                boolean handled = false;
+                if (i == EditorInfo.IME_ACTION_SEND) {
+                    dialNumber();
+                    handled = true;
+                }
+                return handled;
+            }
+        });
+
+    }
+
+    private void dialNumber() {
+        String phoneNum = mPhone.getText().toString().trim();
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+        dialIntent.setData(Uri.parse("tel:" + phoneNum));
+        if (dialIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(dialIntent);
+        } else {
+            Log.d(TAG, "dialNumber: nothing to dial");
+        }
     }
 
     public void onRadioButtonClicked(View view) {

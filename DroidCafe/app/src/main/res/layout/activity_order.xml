@@ -36,6 +36,7 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="@string/enter_phone_hint"
+        android:imeOptions="actionSend"
         android:inputType="phone"
         app:layout_constraintBaseline_toBaselineOf="@+id/phone_label"
         app:layout_constraintStart_toEndOf="@+id/phone_label" />
