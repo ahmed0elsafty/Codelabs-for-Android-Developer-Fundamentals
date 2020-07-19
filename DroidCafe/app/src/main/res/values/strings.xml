@@ -34,6 +34,9 @@
     <string name="action_status_message">You selected Status.</string>
     <string name="action_favorites_message">You selected Favorites.</string>
     <string name="action_contact_message">You selected Contact.</string>
+    <string name="action_share">Share</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
     <string-array name="labels_array">
         <item>Home</item>
         <item>Work</item>
