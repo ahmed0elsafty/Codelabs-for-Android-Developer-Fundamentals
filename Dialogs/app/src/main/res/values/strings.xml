@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Dialogs</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pick_time">PICK TIME</string>
+    <string name="pick_date">PICK DATE</string>
+    <string name="alert">ALERT</string>
 </resources>

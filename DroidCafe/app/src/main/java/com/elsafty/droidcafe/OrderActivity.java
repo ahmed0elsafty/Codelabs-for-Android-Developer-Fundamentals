@@ -19,14 +19,15 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class OrderActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class OrderActivity extends AppCompatActivity {
     private static final String TAG = "OrderActivity";
+    private static final String BUNDLE_KEY = "selected-checkboxes";
     private TextView mRecieveMessage;
     private RadioButton mSameDay;
     private Spinner mSpinner;
     private String mSpinnerLabel;
     private EditText mPhone;
-    private ArrayList<String> mSelectedBoxes = new ArrayList<>();
+    private ArrayList<String> mSelectedBoxes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
         mPhone = findViewById(R.id.phone_text);
         mSpinner = findViewById(R.id.spinner_label);
         mSameDay = findViewById(R.id.same_day);
+        mSelectedBoxes = new ArrayList<>();
         mRecieveMessage = findViewById(R.id.recieve_message);
         final Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.MESSAGE);
@@ -42,7 +44,18 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
         mSameDay.setChecked(true);
 
         if (mSpinner != null) {
-            mSpinner.setOnItemSelectedListener(this);
+            mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                    mSpinnerLabel = (String) adapterView.getItemAtPosition(position);
+                    displayMessage(mSpinnerLabel);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
         }
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.labels_array, android.R.layout.simple_spinner_item);
@@ -60,7 +73,9 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
                 return handled;
             }
         });
-
+        if (savedInstanceState != null) {
+            mSelectedBoxes = savedInstanceState.getStringArrayList(BUNDLE_KEY);
+        }
     }
 
     private void dialNumber() {
@@ -99,16 +114,6 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
 
     private void displayMessage(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-        mSpinnerLabel = (String) adapterView.getItemAtPosition(position);
-        displayMessage(mSpinnerLabel);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
     public void showToast(View view) {
@@ -158,7 +163,12 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
                     mSelectedBoxes.remove(getString(R.string.orio_cookie_crumbles));
                 }
                 break;
-
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putStringArrayList(BUNDLE_KEY, mSelectedBoxes);
     }
 }

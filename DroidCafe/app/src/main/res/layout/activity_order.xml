@@ -1,235 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrderActivity">
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/show_toast"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_wide"
-        android:layout_marginTop="@dimen/margin_wide"
-        android:onClick="showToast"
-        android:text="@string/show_toast"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toppings" />
+        android:focusableInTouchMode="true"
+        tools:context=".OrderActivity">
 
-    <EditText
-        android:id="@+id/name_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:ems="10"
-        android:hint="@string/enter_name_hint"
-        android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/name_label"
-        app:layout_constraintStart_toEndOf="@+id/name_label" />
-
-    <EditText
-        android:id="@+id/address_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:hint="@string/enter_address_hint"
-        android:inputType="textMultiLine"
-        app:layout_constraintBaseline_toBaselineOf="@+id/address_label"
-        app:layout_constraintStart_toEndOf="@+id/address_label" />
-
-    <EditText
-        android:id="@+id/phone_text"
-        android:layout_width="169dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:hint="@string/enter_phone_hint"
-        android:imeOptions="actionSend"
-        android:inputType="phone"
-        app:layout_constraintBaseline_toBaselineOf="@+id/phone_label"
-        app:layout_constraintStart_toEndOf="@+id/phone_label" />
-
-    <EditText
-        android:id="@+id/note_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:ems="10"
-        android:hint="@string/enter_note_hint"
-        android:inputType="textMultiLine|textCapSentences"
-        app:layout_constraintBaseline_toBaselineOf="@+id/note_label"
-        app:layout_constraintStart_toEndOf="@+id/note_label" />
-
-    <LinearLayout
-        android:id="@+id/toppings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_wide"
-        android:layout_marginLeft="@dimen/margin_wide"
-        android:layout_marginTop="@dimen/margin_wide"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toppings_label">
-
-        <CheckBox
-            android:id="@+id/chocolate_syrup"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/show_toast"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="@string/chocolate_syrup" />
+            android:layout_marginStart="@dimen/margin_wide"
+            android:layout_marginTop="@dimen/margin_wide"
+            android:onClick="showToast"
+            android:text="@string/show_toast"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toppings" />
 
-        <CheckBox
-            android:id="@+id/sprinkles"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/name_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="@string/sprinkles" />
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:ems="10"
+            android:hint="@string/enter_name_hint"
+            android:inputType="textPersonName"
+            app:layout_constraintBaseline_toBaselineOf="@+id/name_label"
+            app:layout_constraintStart_toEndOf="@+id/name_label" />
 
-        <CheckBox
-            android:id="@+id/crushed_nuts"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/address_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="@string/crushed_nuts" />
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:hint="@string/enter_address_hint"
+            android:inputType="textMultiLine"
+            app:layout_constraintBaseline_toBaselineOf="@+id/address_label"
+            app:layout_constraintStart_toEndOf="@+id/address_label" />
 
-        <CheckBox
-            android:id="@+id/cherries"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/phone_text"
+            android:layout_width="169dp"
             android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="@string/cherries" />
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:hint="@string/enter_phone_hint"
+            android:imeOptions="actionSend"
+            android:inputType="phone"
+            app:layout_constraintBaseline_toBaselineOf="@+id/phone_label"
+            app:layout_constraintStart_toEndOf="@+id/phone_label" />
 
-        <CheckBox
-            android:id="@+id/orio"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/note_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="@string/orio_cookie_crumbles" />
-    </LinearLayout>
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:ems="10"
+            android:hint="@string/enter_note_hint"
+            android:inputType="textMultiLine|textCapSentences"
+            app:layout_constraintBaseline_toBaselineOf="@+id/note_label"
+            app:layout_constraintStart_toEndOf="@+id/note_label" />
 
-    <RadioGroup
-        android:id="@+id/deliveru_methods"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_wide"
-        android:layout_marginLeft="@dimen/margin_wide"
-        android:layout_marginTop="@dimen/margin_wide"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delivery_label">
-
-        <RadioButton
-            android:id="@+id/same_day"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/toppings"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/same_day_messenger_service" />
+            android:layout_marginStart="@dimen/margin_wide"
+            android:layout_marginLeft="@dimen/margin_wide"
+            android:layout_marginTop="@dimen/margin_wide"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toppings_label">
 
-        <RadioButton
-            android:id="@+id/next_day"
-            android:layout_width="match_parent"
+            <CheckBox
+                android:id="@+id/chocolate_syrup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:text="@string/chocolate_syrup" />
+
+            <CheckBox
+                android:id="@+id/sprinkles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:text="@string/sprinkles" />
+
+            <CheckBox
+                android:id="@+id/crushed_nuts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:text="@string/crushed_nuts" />
+
+            <CheckBox
+                android:id="@+id/cherries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:text="@string/cherries" />
+
+            <CheckBox
+                android:id="@+id/orio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:text="@string/orio_cookie_crumbles" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/deliveru_methods"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/next_day_ground_delivery" />
+            android:layout_marginStart="@dimen/margin_wide"
+            android:layout_marginLeft="@dimen/margin_wide"
+            android:layout_marginTop="@dimen/margin_wide"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_label">
 
-        <RadioButton
-            android:id="@+id/pick_up"
-            android:layout_width="match_parent"
+            <RadioButton
+                android:id="@+id/same_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/same_day_messenger_service" />
+
+            <RadioButton
+                android:id="@+id/next_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/next_day_ground_delivery" />
+
+            <RadioButton
+                android:id="@+id/pick_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/pick_up" />
+        </RadioGroup>
+
+        <Spinner
+            android:id="@+id/spinner_label"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/pick_up" />
-    </RadioGroup>
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="@dimen/margin_wide"
+            android:layout_marginEnd="@dimen/margin_wide"
+            android:layout_marginRight="@dimen/margin_wide"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/phone_text"
+            app:layout_constraintTop_toBottomOf="@+id/address_text" />
 
-    <Spinner
-        android:id="@+id/spinner_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="@dimen/margin_wide"
-        android:layout_marginEnd="@dimen/margin_wide"
-        android:layout_marginRight="@dimen/margin_wide"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/phone_text"
-        app:layout_constraintTop_toBottomOf="@+id/address_text" />
+        <TextView
+            android:id="@+id/name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_wide"
+            android:layout_marginLeft="@dimen/margin_wide"
+            android:layout_marginTop="32dp"
+            android:text="@string/name_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recieve_message" />
 
-    <TextView
-        android:id="@+id/name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_wide"
-        android:layout_marginLeft="@dimen/margin_wide"
-        android:layout_marginTop="32dp"
-        android:text="@string/name_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recieve_message" />
+        <TextView
+            android:id="@+id/phone_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_wide"
+            android:layout_marginLeft="@dimen/margin_wide"
+            android:layout_marginTop="@dimen/margin_wide"
+            android:text="@string/phone_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/address_label" />
 
-    <TextView
-        android:id="@+id/phone_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_wide"
-        android:layout_marginLeft="@dimen/margin_wide"
-        android:layout_marginTop="@dimen/margin_wide"
-        android:text="@string/phone_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_label" />
+        <TextView
+            android:id="@+id/recieve_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_wide"
+            android:layout_marginLeft="@dimen/margin_wide"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/donut_order_message" />
 
-    <TextView
-        android:id="@+id/recieve_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_wide"
-        android:layout_marginLeft="@dimen/margin_wide"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/donut_order_message" />
+        <TextView
+            android:id="@+id/note_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_wide"
+            android:layout_marginLeft="@dimen/margin_wide"
+            android:layout_marginTop="@dimen/margin_wide"
+            android:text="@string/note_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_label" />
 
-    <TextView
-        android:id="@+id/note_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_wide"
-        android:layout_marginLeft="@dimen/margin_wide"
-        android:layout_marginTop="@dimen/margin_wide"
-        android:text="@string/note_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_label" />
+        <TextView
+            android:id="@+id/address_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_wide"
+            android:layout_marginLeft="@dimen/margin_wide"
+            android:layout_marginTop="@dimen/margin_wide"
+            android:text="@string/address_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_label" />
 
-    <TextView
-        android:id="@+id/address_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_wide"
-        android:layout_marginLeft="@dimen/margin_wide"
-        android:layout_marginTop="@dimen/margin_wide"
-        android:text="@string/address_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_label" />
+        <TextView
+            android:id="@+id/delivery_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_wide"
+            android:layout_marginLeft="@dimen/margin_wide"
+            android:layout_marginTop="@dimen/margin_wide"
+            android:text="@string/choose_a_delivery_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/note_text" />
 
-    <TextView
-        android:id="@+id/delivery_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_wide"
-        android:layout_marginLeft="@dimen/margin_wide"
-        android:layout_marginTop="@dimen/margin_wide"
-        android:text="@string/choose_a_delivery_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/note_text" />
-
-    <TextView
-        android:id="@+id/toppings_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_wide"
-        android:layout_marginTop="@dimen/margin_wide"
-        android:text="@string/toppings_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deliveru_methods" />
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/toppings_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_wide"
+            android:layout_marginTop="@dimen/margin_wide"
+            android:text="@string/toppings_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/deliveru_methods" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
