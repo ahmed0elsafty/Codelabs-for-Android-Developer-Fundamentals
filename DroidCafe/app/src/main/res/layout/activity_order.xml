@@ -27,13 +27,11 @@
             android:id="@+id/name_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:ems="10"
             android:hint="@string/enter_name_hint"
             android:inputType="textPersonName"
             app:layout_constraintBaseline_toBaselineOf="@+id/name_label"
-            app:layout_constraintStart_toEndOf="@+id/name_label" />
+            app:layout_constraintStart_toStartOf="@+id/address_text" />
 
         <EditText
             android:id="@+id/address_text"
@@ -43,32 +41,29 @@
             android:ems="10"
             android:hint="@string/enter_address_hint"
             android:inputType="textMultiLine"
-            app:layout_constraintBaseline_toBaselineOf="@+id/address_label"
-            app:layout_constraintStart_toEndOf="@+id/address_label" />
+            app:layout_constraintStart_toEndOf="@+id/address_label"
+            app:layout_constraintTop_toBottomOf="@+id/name_text" />
 
         <EditText
             android:id="@+id/phone_text"
-            android:layout_width="169dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:ems="10"
             android:hint="@string/enter_phone_hint"
             android:imeOptions="actionSend"
             android:inputType="phone"
-            app:layout_constraintBaseline_toBaselineOf="@+id/phone_label"
-            app:layout_constraintStart_toEndOf="@+id/phone_label" />
+            app:layout_constraintStart_toStartOf="@+id/address_text"
+            app:layout_constraintTop_toBottomOf="@+id/address_text" />
 
         <EditText
             android:id="@+id/note_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:ems="10"
             android:hint="@string/enter_note_hint"
             android:inputType="textMultiLine|textCapSentences"
-            app:layout_constraintBaseline_toBaselineOf="@+id/note_label"
-            app:layout_constraintStart_toEndOf="@+id/note_label" />
+            app:layout_constraintStart_toStartOf="@+id/phone_text"
+            app:layout_constraintTop_toBottomOf="@+id/phone_text" />
 
         <LinearLayout
             android:id="@+id/toppings"
@@ -154,10 +149,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="@dimen/margin_wide"
-            android:layout_marginEnd="@dimen/margin_wide"
-            android:layout_marginRight="@dimen/margin_wide"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/phone_text"
             app:layout_constraintTop_toBottomOf="@+id/address_text" />
@@ -178,11 +171,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_wide"
-            android:layout_marginLeft="@dimen/margin_wide"
-            android:layout_marginTop="@dimen/margin_wide"
             android:text="@string/phone_label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/address_label" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/phone_text"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/recieve_message"
@@ -201,22 +192,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_wide"
-            android:layout_marginLeft="@dimen/margin_wide"
-            android:layout_marginTop="@dimen/margin_wide"
             android:text="@string/note_label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phone_label" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/note_text"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/address_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_wide"
-            android:layout_marginLeft="@dimen/margin_wide"
-            android:layout_marginTop="@dimen/margin_wide"
             android:text="@string/address_label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_label" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/address_text"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/delivery_label"

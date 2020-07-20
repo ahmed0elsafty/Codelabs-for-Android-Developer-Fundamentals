@@ -174,7 +174,7 @@ public class OrderActivity extends AppCompatActivity {
     }
     public void OnprocessDate(int year,int month,int day){
         String yearString = Integer.toString(year);
-        String monthString =Integer.toString(month);
+        String monthString =Integer.toString(month + 1);
         String dayString = Integer.toString(day);
         String message = dayString + "/" + monthString + "/" + yearString;
         displayMessage(message);
