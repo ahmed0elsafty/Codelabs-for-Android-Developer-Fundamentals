@@ -1,14 +1,19 @@
 package com.elsafty.scorekeeper;
 
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 public class MainActivity extends AppCompatActivity {
     private static final String SCORE_1 = "score-1";
@@ -17,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private int mScore_2;
     private TextView mScore_1TextView;
     private TextView mScore_2TextView;
+    private StateListDrawable mStateListDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +39,14 @@ public class MainActivity extends AppCompatActivity {
         mScore_1TextView.setText(String.valueOf(mScore_1));
         mScore_2TextView.setText(String.valueOf(mScore_2));
 
+        mStateListDrawable = (StateListDrawable) getDrawable(R.drawable.button_states);
+
     }
 
+
+
     public void increaseScore(View view) {
+
         int id = view.getId();
         switch (id) {
             case R.id.increaseTeam1:

@@ -4,7 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+            <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="team_label_style" parent="TextAppearance.AppCompat.Display1">
@@ -22,7 +22,7 @@
     </style>
 
     <style name="ScoreButtons" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/button_background</item>
+        <item name="android:background">@drawable/button_states</item>
         <item name="android:tint">@color/colorPrimary</item>
     </style>
 

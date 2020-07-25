@@ -15,6 +15,7 @@
         <ImageButton
             android:id="@+id/decreaseTeam1"
             style="@style/decrease_button_style"
+            android:filterTouchesWhenObscured="true"
             android:onClick="decreaseScore" />
 
         <ImageButton
