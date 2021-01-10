@@ -1,0 +1,32 @@
+<resources>
+    <!-- Title of app -->
+    <string name="app_name">HelloSharedPrefs</string>
+
+    <!-- Button label for blue button -->
+    <string name="blue_button">Blue</string>
+
+    <!-- Button label for green button -->
+    <string name="green_button">Green</string>
+
+    <!-- Button label for red button -->
+    <string name="red_button">Red</string>
+
+    <!-- Button label for black button -->
+    <string name="black_button">Black</string>
+
+    <!-- Default string for count TextView -->
+    <string name="default_count">0</string>
+
+    <!-- Button label for Count button -->
+    <string name="count_button">Count</string>
+
+    <!-- Button label for Reset button -->
+    <string name="reset_button">Reset</string>
+
+    <string name="switch_pref_title">Change background color</string>
+    <string name="color_list_pref_title">Choose color</string>
+    <string name="color_list_key">background-color</string>
+    <string name="change_color_switch_key">is-color-enabled</string>
+    <string name="settings_menu_item_label">Settings</string>
+    <string name="default_color">gray</string>
+</resources>
