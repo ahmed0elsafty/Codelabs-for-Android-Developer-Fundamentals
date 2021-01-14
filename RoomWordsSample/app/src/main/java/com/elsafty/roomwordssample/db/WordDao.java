@@ -29,6 +29,6 @@ public interface WordDao {
     @Delete
     void deleteWord(Word word);
 
-    @Update(onConflict = OnConflictStrategy.IGNORE)
-    void update(Word... word);
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void update(Word word);
 }

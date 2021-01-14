@@ -27,8 +27,11 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements WordListAdapter.OnWordClicked {
     private static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
+    private static final int UPDATE_WORD_REQUEST_CODE = 521;
+    public static final String UPATED_WORD_TEXT = "word";
+    public static final String UPATED_WORD_ID = "id";
     private RecyclerView wordRecyclerView;
     private WordListAdapter mAdapter;
     private WordViewModel mViewModel;
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         wordRecyclerView = findViewById(R.id.recycleView);
-        mAdapter = new WordListAdapter(this);
+        mAdapter = new WordListAdapter(this, this);
         wordRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         wordRecyclerView.setAdapter(mAdapter);
         mViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper
-                .SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT ){
+                .SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -71,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 Word word = mAdapter.getWordAtPosition(position);
 //                Toast.makeText(MainActivity.this, "Deleting " +
 //                        word.getWord(), Toast.LENGTH_LONG).show();
-                Snackbar.make(viewHolder.itemView,"Deleting " +
+                Snackbar.make(viewHolder.itemView, "Deleting " +
                         word.getWord(), BaseTransientBottomBar.LENGTH_LONG).show();
                 mViewModel.deleteWord(word);
             }
@@ -87,6 +90,15 @@ public class MainActivity extends AppCompatActivity {
             Word word = new Word();
             word.setWord(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
             mViewModel.insertWord(word);
+        } else if (resultCode == RESULT_OK && requestCode == UPDATE_WORD_REQUEST_CODE) {
+            String wordText = data.getStringExtra(NewWordActivity.EXTRA_REPLY);
+            int id = data.getIntExtra(NewWordActivity.EXTRA_UPDATE, -1);
+            if (id != -1) {
+                Word word = new Word();
+                word.setWord(wordText);
+                word.setId(id);
+                mViewModel.updateWord(word);
+            }
         } else {
             Toast.makeText(
                     getApplicationContext(),
@@ -112,5 +124,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void OnClick(Word word) {
+        Intent updateWordIntent = new Intent(this, NewWordActivity.class);
+        updateWordIntent.putExtra(UPATED_WORD_TEXT, word.getWord());
+        updateWordIntent.putExtra(UPATED_WORD_ID, word.getId());
+        startActivityForResult(updateWordIntent, UPDATE_WORD_REQUEST_CODE);
     }
 }

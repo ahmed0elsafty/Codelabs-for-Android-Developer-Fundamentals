@@ -16,9 +16,15 @@ import java.util.List;
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
     private Context mContext;
     private List<Word> mWords;
+    private OnWordClicked onWordClicked;
 
-    public WordListAdapter(Context mContext) {
+    public interface OnWordClicked {
+        void OnClick(Word word);
+    }
+
+    public WordListAdapter(Context mContext, OnWordClicked wordClicked) {
         this.mContext = mContext;
+        this.onWordClicked = wordClicked;
     }
 
     public void setWords(List<Word> mWords) {
@@ -26,7 +32,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         notifyDataSetChanged();
     }
 
-    public Word getWordAtPosition(int position){
+    public Word getWordAtPosition(int position) {
         return mWords.get(position);
     }
 
@@ -50,12 +56,19 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         } else return 0;
     }
 
-    class WordViewHolder extends RecyclerView.ViewHolder {
+    class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView wordTextView;
 
         public WordViewHolder(@NonNull View itemView) {
             super(itemView);
             wordTextView = itemView.findViewById(R.id.word_textView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Word word = getWordAtPosition(getAdapterPosition());
+            onWordClicked.OnClick(word);
         }
     }
 }
